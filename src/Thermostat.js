@@ -1,6 +1,7 @@
 class Thermostat{
   constructor() {
-    this._temperature = 20;
+    this.DEFAULT_TEMPERATURE = 20;
+    this._temperature = this.DEFAULT_TEMPERATURE;
   }
 
   getCurrentTemperature() {
