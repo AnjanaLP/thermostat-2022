@@ -29,6 +29,10 @@ class Thermostat{
     this._powerSavingMode = false;
   }
 
+  switchPowerSavingModeOn() {
+    this._powerSavingMode = true;
+  }
+
   _isMinimumTemperature() {
     return this._temperature === this._MIN_TEMPERATURE;
   }
