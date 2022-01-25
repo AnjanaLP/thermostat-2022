@@ -75,4 +75,14 @@ describe ('Thermostat', function(){
       expect(thermostat.isPowerSavingModeOn()).toBe(true);
     });
   });
+
+  describe('#reset', function() {
+    it('resets the temperature to the default temperature', function() {
+      for (var i = 0; i < 5; i++) {
+        thermostat.down();
+      };
+      thermostat.reset();
+      expect(thermostat.getCurrentTemperature()).toEqual(20);
+    });
+  });
 });
