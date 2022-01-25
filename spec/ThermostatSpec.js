@@ -25,5 +25,14 @@ describe ('Thermostat', function(){
       thermostat.down();
       expect(thermostat.getCurrentTemperature()).toEqual(19);
     });
+
+    describe('when the minimum temperature is reached', function() {
+      it('the temperature cannot be decreased', function() {
+        for (var i = 0; i < 11; i++) {
+          thermostat.down();
+        };
+        expect(thermostat.getCurrentTemperature()).toEqual(10);
+      });
+    });
   });
 });
