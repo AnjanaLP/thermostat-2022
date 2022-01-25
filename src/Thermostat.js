@@ -7,4 +7,8 @@ class Thermostat{
   getCurrentTemperature() {
     return this._temperature;
   }
+
+  up() {
+    this._temperature += 1
+  }
 }
