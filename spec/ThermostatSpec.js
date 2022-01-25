@@ -18,6 +18,25 @@ describe ('Thermostat', function(){
       thermostat.up()
       expect(thermostat.getCurrentTemperature()).toEqual(21);
     });
+
+    describe('when power saving mode is on', function() {
+      it('the temperature cannot be increased above 25 degrees', function() {
+        for (var i = 0; i < 6; i++) {
+          thermostat.up();
+        };
+        expect(thermostat.getCurrentTemperature()).toEqual(25);
+      });
+    });
+
+    describe('when power saving mode is off', function() {
+      it('the temperature cannot be increased above 32 degrees', function() {
+        thermostat.switchPowerSavingModeOff();
+        for (var i = 0; i < 13; i++) {
+          thermostat.up();
+        };
+        expect(thermostat.getCurrentTemperature()).toEqual(32);
+      });
+    });
   });
 
   describe('#down', function() {
