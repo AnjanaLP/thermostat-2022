@@ -35,4 +35,10 @@ describe ('Thermostat', function(){
       });
     });
   });
+
+  describe('#isPowerSavingModeOn', function() {
+    it('initially returns true', function() {
+      expect(thermostat.isPowerSavingModeOn()).toBe(true);
+    });
+  });
 });

@@ -3,6 +3,7 @@ class Thermostat{
     this.DEFAULT_TEMPERATURE = 20;
     this._MIN_TEMPERATURE = 10;
     this._temperature = this.DEFAULT_TEMPERATURE;
+    this._powerSavingMode = true;
   }
 
   getCurrentTemperature() {
@@ -18,6 +19,10 @@ class Thermostat{
       return;
     }
     this._temperature -= 1;
+  }
+
+  isPowerSavingModeOn() {
+    return this._powerSavingMode;
   }
 
   _isMinimumTemperature() {
