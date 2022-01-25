@@ -85,4 +85,34 @@ describe ('Thermostat', function(){
       expect(thermostat.getCurrentTemperature()).toEqual(20);
     });
   });
+
+  describe('#energyUsage', function() {
+    describe('when the temperature is less than 18 degrees', function() {
+      it('returns low-usage', function() {
+        for (var i = 0; i < 3; i++) {
+          thermostat.down();
+        };
+        expect(thermostat.energyUsage()).toEqual('low-usage');
+      });
+    });
+
+    describe('when the temperature is between 18 and 25 degrees', function() {
+      it('returns medium-usage', function() {
+        for (var i = 0; i < 5; i++) {
+          thermostat.up();
+        };
+        expect(thermostat.energyUsage()).toEqual('medium-usage');
+      });
+    });
+
+    describe('when the temperature is above 25 degrees', function() {
+      it('returns high-usage', function() {
+        thermostat.switchPowerSavingModeOff();
+        for (var i = 0; i < 6; i++) {
+          thermostat.up();
+        };
+        expect(thermostat.energyUsage()).toEqual('high-usage');
+      });
+    });
+  });
 });
