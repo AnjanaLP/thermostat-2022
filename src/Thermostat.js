@@ -4,6 +4,7 @@ class Thermostat{
     this._MIN_TEMPERATURE = 10;
     this._MAX_PSM_ON_TEMPERATURE = 25;
     this._MAX_PSM_OFF_TEMPERATURE = 32;
+    this._TEMPERATURE_CHANGE = 1;
     this._temperature = this._DEFAULT_TEMPERATURE;
     this._powerSavingMode = true;
   }
@@ -16,14 +17,14 @@ class Thermostat{
     if (this._isMaximumTemperature()) {
       return;
     }
-    this._temperature += 1
+    this._temperature += this._TEMPERATURE_CHANGE;
   }
 
   down() {
     if (this._isMinimumTemperature()) {
       return;
     }
-    this._temperature -= 1;
+    this._temperature -= this._TEMPERATURE_CHANGE;
   }
 
   isPowerSavingModeOn() {
