@@ -12,6 +12,7 @@ class ThermostatApp < Sinatra::Base
     thermostat = Thermostat.instance
     {
       temperature: thermostat.temperature,
+      psm_status: thermostat.psm_status,
       status: 200
     }.to_json
   end
@@ -25,6 +26,17 @@ class ThermostatApp < Sinatra::Base
       thermostat.down
     when "reset"
       thermostat.reset
+    end
+    { status: 200 }.to_json
+  end
+
+  post '/power-saving-mode' do
+    thermostat = Thermostat.instance
+    case params[:method]
+    when "off"
+      thermostat.switch_psm_off
+    when "on"
+      thermostat.switch_psm_on
     end
     { status: 200 }.to_json
   end

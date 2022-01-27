@@ -2,7 +2,7 @@ class Thermostat
   DEFAULT_TEMPERATURE = 20
   TEMPERATURE_CHANGE = 1
 
-  attr_reader :temperature
+  attr_reader :temperature, :psm_status
 
   def self.instance
     @thermostat ||= self.new
@@ -10,6 +10,7 @@ class Thermostat
 
   def initialize
     @temperature = DEFAULT_TEMPERATURE
+    @psm_status = "on"
   end
 
   def up
@@ -22,5 +23,13 @@ class Thermostat
 
   def reset
     @temperature = DEFAULT_TEMPERATURE
+  end
+
+  def switch_psm_off
+    @psm_status = 'off'
+  end
+
+  def switch_psm_on
+    @psm_status = 'on'
   end
 end

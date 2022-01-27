@@ -29,16 +29,22 @@ $(document).ready(function() {
     });
   });
 
-  $('#psm-on').click(function() {
-    thermostat.switchPowerSavingModeOn();
-    $('#psm-status').text('on');
-    updateTemperature();
+  $('#psm-off').click(function() {
+    $.post('/power-saving-mode', { method: "off"}, function(res) {
+      var data = JSON.parse(res);
+      if (data.status == 200) {
+        updateTemperature();
+      }
+    });
   });
 
-  $('#psm-off').click(function() {
-    thermostat.switchPowerSavingModeOff();
-    $('#psm-status').text('off');
-    updateTemperature();
+  $('#psm-on').click(function() {
+    $.post('/power-saving-mode', { method: "on"}, function(res) {
+      var data = JSON.parse(res);
+      if (data.status == 200) {
+        updateTemperature();
+      }
+    });
   });
 
   displayWeather('London');
@@ -54,6 +60,7 @@ $(document).ready(function() {
       var data = JSON.parse(res)
       if (data.status == 200) {
         $('#temperature').text(data.temperature);
+        $('#psm-status').text(data.psm_status);
       }
     });
     $('#temperature').attr('class', thermostat.energyUsage());

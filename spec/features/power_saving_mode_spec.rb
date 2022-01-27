@@ -1,4 +1,4 @@
-xfeature 'Power saving mode' do
+feature 'Power saving mode' do
   before do
     visit '/'
   end
@@ -17,7 +17,7 @@ xfeature 'Power saving mode' do
       expect(page.find('#psm-status')).not_to have_content 'on'
     end
 
-    scenario 'has a maximum temperature of 32' do
+    xscenario 'has a maximum temperature of 32' do
       13.times { page.find('#temperature-up').click }
       expect(page.find('#temperature')).to have_content '32'
       expect(page.find('#temperature')).not_to have_content '33'
@@ -32,13 +32,13 @@ xfeature 'Power saving mode' do
       expect(page.find('#psm-status')).not_to have_content 'off'
     end
 
-    scenario 'has a maximum temperature of 25' do
+    xscenario 'has a maximum temperature of 25' do
       6.times { page.find('#temperature-up').click }
       expect(page.find('#temperature')).to have_content '25'
       expect(page.find('#temperature')).not_to have_content '26'
     end
 
-    scenario 'resets the temperature if it is over 25' do
+    xscenario 'resets the temperature if it is over 25' do
       page.find('#psm-off').click
       10.times { page.find('#temperature-up').click }
       expect(page.find('#temperature')).to have_content '30'

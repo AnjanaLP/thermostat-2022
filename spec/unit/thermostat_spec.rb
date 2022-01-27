@@ -43,4 +43,25 @@ describe Thermostat do
       expect(thermostat.temperature).to eq described_class::DEFAULT_TEMPERATURE
     end
   end
+
+  describe '#psm_status' do
+    it "initially returns 'on'" do
+      expect(thermostat.psm_status).to eq "on"
+    end
+
+    context 'when switched off' do
+      it "returns 'off'" do
+        thermostat.switch_psm_off
+        expect(thermostat.psm_status).to eq "off"
+      end
+    end
+
+    context 'when switched back on' do
+      it "returns 'on'" do
+        thermostat.switch_psm_off
+        thermostat.switch_psm_on
+        expect(thermostat.psm_status).to eq "on"
+      end
+    end
+  end
 end
