@@ -2,7 +2,8 @@ feature 'Viewing temperature' do
   before { visit '/' }
 
   scenario 'initially see the default temperature' do
-    expect(page).to have_content "20"
+    expect(page.find('#temperature')).to have_content '20'
+    expect(page).to have_css '.medium-usage'
   end
 
   context 'when the temperature is increased' do
@@ -24,6 +25,7 @@ feature 'Viewing temperature' do
       10.times { page.find('#temperature-down').click }
       expect(page.find('#temperature')).to have_content '10'
       expect(page.find('#temperature')).not_to have_content '9'
+      expect(page).to have_css '.low-usage'
     end
   end
 

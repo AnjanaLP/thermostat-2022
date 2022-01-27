@@ -61,6 +61,7 @@ $(document).ready(function() {
       if (data.status == 200) {
         $('#temperature').text(data.temperature);
         $('#psm-status').text(data.psm_status);
+        $('#temperature').attr('class', data.energy_usage);
       }
     });
     $('#temperature').attr('class', thermostat.energyUsage());

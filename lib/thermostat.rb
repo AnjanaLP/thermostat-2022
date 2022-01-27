@@ -4,6 +4,8 @@ class Thermostat
   MAX_PSM_ON_TEMPERATURE = 25
   MAX_PSM_OFF_TEMPERATURE = 32
   MIN_TEMPERATURE = 10
+  MEDIUM_ENERGY_USAGE_LIMIT = 18
+  HIGH_ENERGY_USAGE_LIMIT = 25
 
   attr_reader :temperature, :psm_status
 
@@ -35,6 +37,16 @@ class Thermostat
   def switch_psm_on
     @psm_status = 'on'
     @temperature = MAX_PSM_ON_TEMPERATURE if at_maximum_temperature?
+  end
+
+  def energy_usage
+    if temperature < MEDIUM_ENERGY_USAGE_LIMIT
+      'low-usage'
+    elsif temperature <= HIGH_ENERGY_USAGE_LIMIT
+      'medium-usage'
+    else
+      'high-usage'
+    end
   end
 
   private

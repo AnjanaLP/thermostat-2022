@@ -13,6 +13,7 @@ class ThermostatApp < Sinatra::Base
     {
       temperature: thermostat.temperature,
       psm_status: thermostat.psm_status,
+      energy_usage: thermostat.energy_usage,
       status: 200
     }.to_json
   end

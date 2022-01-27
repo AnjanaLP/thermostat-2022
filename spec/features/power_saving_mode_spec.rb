@@ -20,6 +20,7 @@ feature 'Power saving mode' do
       13.times { page.find('#temperature-up').click }
       expect(page.find('#temperature')).to have_content '32'
       expect(page.find('#temperature')).not_to have_content '33'
+      expect(page).to have_css '.high-usage'
     end
   end
 

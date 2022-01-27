@@ -50,7 +50,7 @@ describe Thermostat do
       expect { thermostat.down }.to change { thermostat.temperature }. by(-described_class::TEMPERATURE_CHANGE)
     end
 
-    it 'temperature cannot be decreased below below the minimum' do
+    it 'temperature cannot be decreased below below the minimum temperature' do
       11.times { thermostat.down }
       expect(thermostat.temperature).to eq described_class::MIN_TEMPERATURE
     end
@@ -92,6 +92,29 @@ describe Thermostat do
         10.times { thermostat.up }
         thermostat.switch_psm_on
         expect(thermostat.temperature).to eq described_class::MAX_PSM_ON_TEMPERATURE
+      end
+    end
+  end
+
+  describe '#energy_usage' do
+    context 'when the temperature is below 18 degrees' do
+      it 'is considered low-usage' do
+        3.times { thermostat.down }
+        expect(thermostat.energy_usage).to eq 'low-usage'
+      end
+    end
+
+    context 'when the temperature is between 18 and 25 degrees' do
+      it 'is considered medium-usage' do
+        expect(thermostat.energy_usage).to eq 'medium-usage'
+      end
+    end
+
+    context 'when the temperature is above 25 degrees' do
+      it 'it is considered high-usage' do
+        thermostat.switch_psm_off
+        6.times { thermostat.up }
+        expect(thermostat.energy_usage).to eq 'high-usage'
       end
     end
   end
