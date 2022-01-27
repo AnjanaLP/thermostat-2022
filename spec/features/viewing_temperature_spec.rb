@@ -1,5 +1,6 @@
 feature 'Viewing temperature' do
   before { visit '/' }
+  after { Capybara.reset_sessions! }
 
   scenario 'initially see the default temperature' do
     expect(page.find('#temperature')).to have_content '20'

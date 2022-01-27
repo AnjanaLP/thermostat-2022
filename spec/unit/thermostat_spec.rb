@@ -118,4 +118,15 @@ describe Thermostat do
       end
     end
   end
+
+  describe '#city' do
+    it "initially returns 'London' by default" do
+      expect(thermostat.city).to eq 'London'
+    end
+
+    it 'can be set to another city' do
+      thermostat.city = "Paris"
+      expect(thermostat.city).to eq "Paris"
+    end
+  end
 end

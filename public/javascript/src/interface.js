@@ -47,13 +47,38 @@ $(document).ready(function() {
     });
   });
 
-  displayWeather('London');
+  displayWeather();
 
   $('#select-city').submit(function(event) {
     event.preventDefault();
     var city = $('#current-city').val();
-    displayWeather(city);
+    $.post('/city', { data: { city: city} }, function(res) {
+      var data = JSON.parse(res);
+      if (data.status == 200) {
+        displayWeather();
+      }
+    });
   });
+
+  function updateCityName(city) {
+    $('#city-name').text(city);
+  };
+
+  function displayWeather() {
+    $.get('/temperature', function(res) {
+      var data = JSON.parse(res)
+      if (data.status == 200) {
+        var city = data.city;
+        var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
+        var token = '&appid=32f322b21c5f51ca1a47dd3ff16918cb';
+        var units = '&units=metric';
+        $.get(url + token + units, function(data) {
+          $('#city-temperature').text(data.main.temp);
+        });
+        updateCityName(city);
+      }
+    });
+  };
 
   function updateTemperature() {
     $.get('/temperature', function(res) {
@@ -61,23 +86,10 @@ $(document).ready(function() {
       if (data.status == 200) {
         $('#temperature').text(data.temperature);
         $('#psm-status').text(data.psm_status);
+        $('#city-name').text(data.city);
         $('#temperature').attr('class', data.energy_usage);
       }
     });
     $('#temperature').attr('class', thermostat.energyUsage());
-  };
-
-  function updateCityName(city) {
-    $('#city-name').text(city);
-  };
-
-  function displayWeather(city) {
-    var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
-    var token = '&appid=32f322b21c5f51ca1a47dd3ff16918cb';
-    var units = '&units=metric';
-    $.get(url + token + units, function(data) {
-      $('#city-temperature').text(data.main.temp);
-    });
-    updateCityName(city);
   };
 });

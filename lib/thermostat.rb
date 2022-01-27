@@ -8,14 +8,16 @@ class Thermostat
   HIGH_ENERGY_USAGE_LIMIT = 25
 
   attr_reader :temperature, :psm_status
+  attr_accessor :city
 
   def self.instance
     @thermostat ||= self.new
   end
 
-  def initialize
+  def initialize(city = "London")
     @temperature = DEFAULT_TEMPERATURE
     @psm_status = "on"
+    @city = city
   end
 
   def up
