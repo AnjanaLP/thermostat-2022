@@ -1,7 +1,5 @@
 feature 'Viewing temperature' do
-  before do
-    visit '/'
-  end
+  before { visit '/' }
 
   scenario 'initially see the default temperature' do
     expect(page).to have_content "20"
@@ -23,7 +21,7 @@ feature 'Viewing temperature' do
     end
   end
 
-  xcontext 'when the temperature is reset' do
+  context 'when the temperature is reset' do
     scenario 'see the default temperature' do
       5.times { page.find('#temperature-up').click }
       expect(page.find('#temperature')).to have_content '24'

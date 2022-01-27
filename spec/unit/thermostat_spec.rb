@@ -28,6 +28,21 @@ describe Thermostat do
     it 'increases the temperature' do
       expect { thermostat.up }.to change { thermostat.temperature }. by(described_class::TEMPERATURE_CHANGE)
     end
+
+    context 'when power saving mode is on' do
+      it 'temperature cannot be increaded above the MAX_PSM_ON_TEMPERATURE' do
+        6.times { thermostat.up }
+        expect(thermostat.temperature).to eq described_class::MAX_PSM_ON_TEMPERATURE
+      end
+    end
+
+    context 'when power saving mode is off' do
+      it 'temperature cannot be increaded above the MAX_PSM_OFF_TEMPERATURE' do
+        thermostat.switch_psm_off
+        13.times { thermostat.up }
+        expect(thermostat.temperature).to eq described_class::MAX_PSM_OFF_TEMPERATURE
+      end
+    end
   end
 
   describe '#down' do
@@ -49,18 +64,29 @@ describe Thermostat do
       expect(thermostat.psm_status).to eq "on"
     end
 
-    context 'when switched off' do
+    context 'when power saving mode is switched off' do
       it "returns 'off'" do
         thermostat.switch_psm_off
         expect(thermostat.psm_status).to eq "off"
       end
     end
 
-    context 'when switched back on' do
+    context 'when power saving mode is switched back on' do
       it "returns 'on'" do
         thermostat.switch_psm_off
         thermostat.switch_psm_on
         expect(thermostat.psm_status).to eq "on"
+      end
+    end
+  end
+
+  describe '#switch_psm_on' do
+    context 'when the temperature is above the MAX_PSM_ON_TEMPERATURE' do
+      it 'resets the temperature to the MAX_PSM_ON_TEMPERATURE' do
+        thermostat.switch_psm_off
+        10.times { thermostat.up }
+        thermostat.switch_psm_on
+        expect(thermostat.temperature).to eq described_class::MAX_PSM_ON_TEMPERATURE
       end
     end
   end
