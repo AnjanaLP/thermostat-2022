@@ -74,6 +74,18 @@ describe ('Thermostat', function(){
       thermostat.switchPowerSavingModeOn();
       expect(thermostat.isPowerSavingModeOn()).toBe(true);
     });
+
+    describe('when the temperature is above the maximum for powing saving on', function() {
+      it('resets the temperature to 25 degress', function() {
+        thermostat.switchPowerSavingModeOff();
+        for (var i = 0; i < 10; i++) {
+         thermostat.up();
+        };
+        expect(thermostat.getCurrentTemperature()).toEqual(30);
+        thermostat.switchPowerSavingModeOn();
+        expect(thermostat.getCurrentTemperature()).toEqual(25);
+      });
+    });
   });
 
   describe('#reset', function() {
