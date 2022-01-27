@@ -19,15 +19,20 @@ feature 'Viewing temperature' do
       expect(page.find('#temperature')).to have_content '19'
       expect(page.find('#temperature')).not_to have_content '20'
     end
+
+    scenario 'has a minimum temperature' do
+      10.times { page.find('#temperature-down').click }
+      expect(page.find('#temperature')).to have_content '10'
+      expect(page.find('#temperature')).not_to have_content '9'
+    end
   end
 
   context 'when the temperature is reset' do
     scenario 'see the default temperature' do
-      5.times { page.find('#temperature-up').click }
-      expect(page.find('#temperature')).to have_content '24'
+      expect(page.find('#temperature')).to have_content '10'
       page.find('#temperature-reset').click
       expect(page.find('#temperature')).to have_content '20'
-      expect(page.find('#temperature')).not_to have_content '24'
+      expect(page.find('#temperature')).not_to have_content '10'
     end
   end
 end

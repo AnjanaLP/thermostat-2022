@@ -3,6 +3,7 @@ class Thermostat
   TEMPERATURE_CHANGE = 1
   MAX_PSM_ON_TEMPERATURE = 25
   MAX_PSM_OFF_TEMPERATURE = 32
+  MIN_TEMPERATURE = 10
 
   attr_reader :temperature, :psm_status
 
@@ -20,7 +21,7 @@ class Thermostat
   end
 
   def down
-    @temperature -= TEMPERATURE_CHANGE
+    @temperature -= TEMPERATURE_CHANGE unless at_minimum_temperature?
   end
 
   def reset
@@ -44,5 +45,9 @@ class Thermostat
     else
       return true if temperature >= MAX_PSM_OFF_TEMPERATURE
     end
+  end
+
+  def at_minimum_temperature?
+    temperature <= MIN_TEMPERATURE
   end
 end
