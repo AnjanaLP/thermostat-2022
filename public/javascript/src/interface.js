@@ -3,8 +3,12 @@ $(document).ready(function() {
   updateTemperature();
 
   $('#temperature-up').click(function() {
-    thermostat.up();
-    updateTemperature();
+    $.post('/temperature', { method: "up" }, function(res) {
+      var data = JSON.parse(res);
+      if (data.status == 200) {
+      updateTemperature();
+      }
+    });
   });
 
   $('#temperature-down').click(function() {
@@ -40,7 +44,9 @@ $(document).ready(function() {
   function updateTemperature() {
     $.get('/temperature', function(res) {
       var data = JSON.parse(res)
-      $('#temperature').text(data.temperature);
+      if (data.status == 200) {
+        $('#temperature').text(data.temperature);
+      }
     });
     $('#temperature').attr('class', thermostat.energyUsage());
   };

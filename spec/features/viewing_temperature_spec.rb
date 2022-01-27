@@ -7,7 +7,7 @@ feature 'Viewing temperature' do
     expect(page).to have_content "20"
   end
 
-  xcontext 'when the temperature is increased' do
+  context 'when the temperature is increased' do
     scenario 'see the change up' do
       page.find('#temperature-up').click
       expect(page.find('#temperature')).to have_content '21'
