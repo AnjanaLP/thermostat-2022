@@ -29,4 +29,10 @@ describe Thermostat do
       expect { thermostat.up }.to change { thermostat.temperature }. by(described_class::TEMPERATURE_CHANGE)
     end
   end
+
+  describe '#down' do
+    it 'decreases the temperature' do
+      expect { thermostat.down }.to change { thermostat.temperature }. by(-described_class::TEMPERATURE_CHANGE)
+    end
+  end
 end

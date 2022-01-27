@@ -18,9 +18,14 @@ class ThermostatApp < Sinatra::Base
 
   post '/temperature' do
     thermostat = Thermostat.instance
-    thermostat.up
+    case params[:method]
+      when "up"
+        thermostat.up
+      when "down"
+        thermostat.down
+    end
     { status: 200 }.to_json
   end
-   
+
   run! if app_file == $0
 end

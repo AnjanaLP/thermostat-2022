@@ -12,8 +12,12 @@ $(document).ready(function() {
   });
 
   $('#temperature-down').click(function() {
-    thermostat.down();
-    updateTemperature();
+    $.post('/temperature', { method: "down" }, function(res) {
+      var data = JSON.parse(res);
+      if (data.status == 200) {
+        updateTemperature();
+      }
+    });
   });
 
   $('#temperature-reset').click(function() {

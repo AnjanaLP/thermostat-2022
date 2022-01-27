@@ -15,9 +15,9 @@ feature 'Viewing temperature' do
     end
   end
 
-  xcontext 'when the temperature is decreased' do
+  context 'when the temperature is decreased' do
     scenario 'see the change down' do
-      page.find('#temperature-down').click
+      2.times { page.find('#temperature-down').click }
       expect(page.find('#temperature')).to have_content '19'
       expect(page.find('#temperature')).not_to have_content '20'
     end

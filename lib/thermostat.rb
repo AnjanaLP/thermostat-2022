@@ -15,4 +15,8 @@ class Thermostat
   def up
     @temperature += TEMPERATURE_CHANGE
   end
+
+  def down
+    @temperature -= TEMPERATURE_CHANGE
+  end
 end
