@@ -1,6 +1,6 @@
-feature 'Viewing homepage' do
-  scenario 'can see a welcome message' do
+feature 'View temperature' do
+  scenario 'see the default starting temperature' do
     visit '/'
-    expect(page).to have_content "Welcome to Thermostat"
+    expect(page).to have_content "20"
   end
 end
