@@ -7,7 +7,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
-    <h1 id="temperature"></h1>
+    <h1>Thermostat set at: <span id="temperature"></span></h1>
+    <div>
+      <h3><span id="city-name">London</span> temperature: <span id="city-temperature"></span></h3>
+      <form id="select-city">
+        <input id="current-city" type="text" placeholder="Enter a city"></input>
+        <input type="submit"></input>
+      </form>
+    </div>
     <p>
       <button id="temperature-up">+</button>
       <button id="temperature-down">-</button>
