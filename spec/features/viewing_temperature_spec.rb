@@ -26,10 +26,10 @@ feature 'Viewing temperature' do
   xcontext 'when the temperature is reset' do
     scenario 'see the default temperature' do
       5.times { page.find('#temperature-up').click }
-      expect(page.find('#temperature')).to have_content '25'
+      expect(page.find('#temperature')).to have_content '24'
       page.find('#temperature-reset').click
       expect(page.find('#temperature')).to have_content '20'
-      expect(page.find('#temperature')).not_to have_content '25'
+      expect(page.find('#temperature')).not_to have_content '24'
     end
   end
 end

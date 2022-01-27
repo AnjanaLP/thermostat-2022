@@ -19,4 +19,8 @@ class Thermostat
   def down
     @temperature -= TEMPERATURE_CHANGE
   end
+
+  def reset
+    @temperature = DEFAULT_TEMPERATURE
+  end
 end

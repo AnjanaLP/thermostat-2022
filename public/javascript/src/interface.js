@@ -6,7 +6,7 @@ $(document).ready(function() {
     $.post('/temperature', { method: "up" }, function(res) {
       var data = JSON.parse(res);
       if (data.status == 200) {
-      updateTemperature();
+        updateTemperature();
       }
     });
   });
@@ -21,8 +21,12 @@ $(document).ready(function() {
   });
 
   $('#temperature-reset').click(function() {
-    thermostat.reset();
-    updateTemperature();
+    $.post('/temperature', { method: "reset" }, function(res) {
+      var data = JSON.parse(res);
+      if (data.status == 200) {
+        updateTemperature();
+      }
+    });
   });
 
   $('#psm-on').click(function() {

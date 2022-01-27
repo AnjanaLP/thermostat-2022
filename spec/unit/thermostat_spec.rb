@@ -35,4 +35,12 @@ describe Thermostat do
       expect { thermostat.down }.to change { thermostat.temperature }. by(-described_class::TEMPERATURE_CHANGE)
     end
   end
+
+  describe '#reset' do
+    it 'resets the temperature to the default' do
+      5.times { thermostat.down }
+      thermostat.reset
+      expect(thermostat.temperature).to eq described_class::DEFAULT_TEMPERATURE
+    end
+  end
 end
