@@ -37,6 +37,8 @@ $ rspec
 ## Technologies used
 * AJAX
 * Capybara
+* CSS
+* HTML
 * Jasmine
 * JavaScript
 * jQuery
