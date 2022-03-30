@@ -25,9 +25,9 @@ $ bundle install
 
 ### Run the app
 ```
-$ ruby app.rb
+$ rackup
 ```
-Visit http://localhost:4567
+Visit http://localhost:9292
 
 ### Run the tests
 ```
