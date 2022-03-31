@@ -18,7 +18,7 @@ A simple thermostat built in a test driven manner to meet the specification belo
 ![Screenshot](https://i.imgur.com/tIDXPnc.png)
 
 ## Video demo
-Visit https://i.imgur.com/qQMHxZA.mp4
+Visit https://i.imgur.com/dzCJxsq.mp4
 
 ## How to use locally
 
