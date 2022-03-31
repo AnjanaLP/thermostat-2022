@@ -17,10 +17,10 @@ A simple thermostat built in a test driven manner to meet the specification belo
 
 ![Screenshot](https://i.imgur.com/tIDXPnc.png)
 
-## How to use
-
-### Video demo
+## Video demo
 Visit https://i.imgur.com/qQMHxZA.mp4
+
+## How to use locally
 
 ### Install project dependencies
 Clone the repo to your local machine, change into the directory, then:
