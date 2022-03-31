@@ -15,9 +15,12 @@ A simple thermostat built in a test driven manner to meet the specification belo
 * You can see the temperature of your city, London by default but you can select any other city
 * All the settings should be saved if you close and reopen the browser
 
-![Screenshot](https://i.imgur.com/qQMHxZA.mp4)
+![Screenshot](https://i.imgur.com/tIDXPnc.png)
 
 ## How to use
+
+### Video demo
+Visit https://i.imgur.com/qQMHxZA.mp4
 
 ### Install project dependencies
 Clone the repo to your local machine, change into the directory, then:
